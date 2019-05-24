@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row">
+        <div class="col"> 
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 70px; border: 1px solid black">
+                <h3 class = "text-white">Belt Exam</h3>
+            </nav>
+        </div>
+    </div>
+    <main class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Register</h5>
+                        <form action="/register" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>First Name:</label>
+                            {% if messages %}
+                            {% for message in messages%}
+                            {% if 'first_name' in message.tags %}
+                            <p style="color: red">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <input type="text" name="first_name" class="form-control" placeholder="Enter First Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name:</label>
+                            {% if messages %}
+                            {% for message in messages%}
+                            {% if 'last_name' in message.tags %}
+                            <p style="color: red">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email address:</label>
+                            {% if messages %}
+                            {% for message in messages%}
+                            {% if 'email' in message.tags %}
+                            <p style="color: red">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <input type="text" name="email" class="form-control" placeholder="Enter Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            {% if messages %}
+                            {% for message in messages%}
+                            {% if 'password' in message.tags %}
+                            <p style="color: red">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password:</label>
+                            {% if messages %}
+                            {% for message in messages%}
+                            {% if 'c_password' in message.tags %}
+                            <p style="color: red">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <input type="password" name="c_password" class="form-control" placeholder="Confirm Password ">
+                        </div>
+                        <input type="submit" value="Register" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Login</h5>
+                        {% if messages %}
+                        {% for message in messages%}
+                        {% if 'invalid' in message.tags %}
+                        <p style="color: red">{{message}}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <form action="/login" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Email address:</label>
+                                <input type="text" name="email" class="form-control" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Password:</label>
+                                <input type="password" name="logpassword" class="form-control" placeholder="Enter Password">
+                            </div>
+                            <input type="submit" value="Login" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
